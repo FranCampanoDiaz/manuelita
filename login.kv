@@ -1,0 +1,282 @@
+<LoginScreen>:
+
+    theme_text_color: "Custom"
+    MDCard :
+        size_hint : None,None
+        size : 320,400
+        pos_hint : {"center_x":.5,"center_y":.5}
+        elevation : 5
+        theme_text_color: "Custom"
+        padding : 20
+        spacing : 30
+        orientation : "vertical"
+        # Adding items to the card
+        MDLabel :
+            text : 'LOGIN'
+            font_style : 'Button'
+            font_size : 35
+            halign : "center"
+
+        MDTextField :
+            id : email
+            hint_text : "email"
+            icon_right : "account"
+            size_hint_x : None
+            width : 220
+            font_size : 20
+            pos_hint : {"center_x":.5}
+            color_active : [1,1,1,1]
+        MDTextField :
+            id : password
+            hint_text : "password"
+            icon_right : "eye-off"
+            size_hint_x : None
+            width : 220
+            font_size : 20
+            pos_hint : {"center_x":.5}
+            color_active : [1,1,1,1]
+            password : True
+        MDRoundFlatButton :
+            text : 'REGISTER NOW'
+            pos_hint : {"center_x":.5}
+            font_size : 15
+
+            on_release: root.manager.current='SignUpScreen'
+        MDRoundFlatButton:
+            text: 'LOGIN'
+            pos_hint: {"center_x": .5}
+            font_size: 15
+
+            on_release: app.get_data(email.text, password.text)
+
+
+<SignUpScreen>:
+    theme_text_color: "Custom"
+    MDCard :
+        size_hint : None,None
+        size : 320,400
+        pos_hint : {"center_x":.5,"center_y":.5}
+        elevation : 5
+        theme_text_color: "Custom"
+        padding : 20
+        spacing : 30
+        orientation : "vertical"
+        # Adding items to the card
+        MDLabel :
+            text : 'SIGN-UP'
+            font_style : 'Button'
+            font_size : 35
+            halign : "center"
+
+        MDTextField :
+            id : email
+            hint_text : "email"
+            icon_right : "account"
+            size_hint_x : None
+            width : 220
+            font_size : 20
+            pos_hint : {"center_x":.5}
+            color_active : [1,1,1,1]
+        MDTextField :
+            id : password
+            hint_text : "password"
+            icon_right : "eye-off"
+            size_hint_x : None
+            width : 220
+            font_size : 20
+            pos_hint : {"center_x":.5}
+            color_active : [1,1,1,1]
+            password : True
+        MDRoundFlatButton :
+            text : 'SIGN-UP'
+            pos_hint : {"center_x":.5}
+            font_size : 15
+
+            on_release: app.send_data(email.text, password.text)
+        MDRoundFlatButton:
+            text: 'LOGIN'
+            pos_hint: {"center_x": .5}
+            font_size: 15
+            on_release:
+                root.manager.current='Login'
+
+
+<CalculatorScreen>
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            source:'foto.jpg'
+            size: root.width, root.height
+            pos: self.pos
+    BoxLayout:
+        orientation:'vertical'
+        size: root.width, root.height
+
+        TextInput:
+            id: cal_input
+            text: "0"
+            halign: "right"
+            font_size: 65
+            size_hint:(1, .25)
+        GridLayout:
+            cols: 4
+            rows: 5
+
+ #row
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "%"
+
+
+            Button:
+                id: clear
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "C"
+                on_press: app.clear()
+
+            MDRectangleFlatIconButton:
+                id: backspace
+                icon: "backspace"
+                size_hint: (.2, .2)
+                font_size: 20
+                text: "delete"
+                bg_color: "custom"
+                on_press: app.remove()
+
+
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "/"
+                on_release: app.math_sign("/")
+
+ #row
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "7"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(7)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "8"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(8)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "9"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(9)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "x"
+                on_release: app.math_sign("*")
+
+ #row
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "4"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(4)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "5"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(5)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "6"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(6)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "-"
+                on_release: app.math_sign("-")
+
+ #row
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "1"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(1)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "2"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(2)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "3"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(3)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "+"
+                on_release: app.math_sign("+")
+
+  #row
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "+/-"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.pos_neg()
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "0"
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.button_press(0)
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "."
+                background_color:(157/255,157/255,157/255,1 )
+                on_release: app.dot()
+
+            Button:
+                size_hint: (.2, .2)
+                font_size: 32
+                text: "="
+                on_release: app.equals()
+        GridLayout:
+            cols: 2
+            rows: 1
+
+            MDRoundFlatIconButton:
+                icon: "keyboard-backspace"
+                text: "Go back"
+                theme_text_color: "Custom"
+                text_color: 75/255, 75/255, 75/255, 1
+                theme_icon_color: "Custom"
+                icon_color: 75/255, 75/255, 75/255, 1
+
+
+                on_release:
+                    root.manager.current='Menu'
